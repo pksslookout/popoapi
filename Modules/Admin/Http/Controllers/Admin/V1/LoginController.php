@@ -6,7 +6,6 @@ use Illuminate\Routing\Controller;
 
 use Illuminate\Support\Facades\Hash;
 use Modules\Admin\Entities\Admin;
-use Modules\User\Entities\User;
 
 use Validator;
 use ThrowException;
@@ -51,8 +50,8 @@ class LoginController extends Controller
             // 'platform' => 'pc_web'
         ]);
 
-        $info = getIpLocation($req->getClientIp());
-        \Log::error('登陆地区: ' . implode('-', $info));
+//        $info = getIpLocation($req->getClientIp());
+//        \Log::error('登陆地区: ' . implode('-', $info));
 
         return [
             'token' => $token
