@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Admin\V1;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Hash;
 use Modules\Admin\Entities\Admin;
 
 use Validator;
@@ -58,7 +59,7 @@ class AdminController extends Controller
         $info = [
             'name' => $req->name,
             'phone' => $req->phone,
-            'password' => $req->password,
+            'password' => Hash::make($req->password),
         ];
 
         $item = Admin::create($info);
@@ -97,7 +98,7 @@ class AdminController extends Controller
                 ThrowException::Conflict('管理员密码需要6位长度以上');
             }
             $item->update([
-                'password' => md5($req->password)
+                'password' => Hash::make($req->password)
             ]);
         }
 

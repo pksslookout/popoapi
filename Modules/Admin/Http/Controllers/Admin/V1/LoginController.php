@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Admin\V1;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Hash;
 use Modules\Admin\Entities\Admin;
 use Modules\User\Entities\User;
 
@@ -24,10 +25,22 @@ class LoginController extends Controller
         ];
         Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
-        $admin = Admin::isExisting([
-            'phone' => $req->phone,
-//            'password' => $req->password
-        ]) ?: ThrowException::Conflict('手机号或密码不正确');
+        $data['phone'] = $req->phone;
+        $data['password'] = $req->password;
+
+        // 校验验证码是否正确
+
+        $admin = Admin::getEntity([
+            'phone' => $data['phone']
+        ]);
+
+        if(!$admin){
+            ThrowException::Conflict('账号错误');
+        }
+
+        if (!Hash::check($data['password'], $admin->password)) {
+            ThrowException::Conflict('密码错误');
+        }
 
         if (!$admin->is_password_login_enabled) {
             ThrowException::Conflict('此帐号已禁用密码登陆~');
