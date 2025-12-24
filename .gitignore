@@ -1,0 +1,13 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+/cert/*
+/storage/upload/*
+/public/export/*
+.env
+/config/env.php
+*.cache
+*.DS_Store
+Modules/Core/Http/Controllers/Client/V1/TestController.php
+.codebuddy/
