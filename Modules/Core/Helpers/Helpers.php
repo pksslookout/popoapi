@@ -356,7 +356,7 @@ function firstChar($s0) {
 
 // 按IP检索该ip所在城市等位置
 function getIpLocation($ip) {
-    $jsonStr = file_get_contents('https://apitest.popolive.com/ip-location?ip=' . $ip . '&domain=' . $_SERVER["HTTP_HOST"]);
+    $jsonStr = file_get_contents('https://apitest.popolive.net/ip-location?ip=' . $ip . '&domain=' . $_SERVER["HTTP_HOST"]);
     return @json_decode($jsonStr, true)['data'] ?: [
         'city' => NULL,
         'province' => NULL,

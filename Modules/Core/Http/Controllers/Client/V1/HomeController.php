@@ -10,6 +10,6 @@ class HomeController extends Controller
     // 跳转至公司主页，可自行修改
     public function home(Request $req)
     {
-    	return redirect(env('HOME_REDIRECT') ?: 'https://test.popolive.com');
+    	return redirect(env('HOME_REDIRECT') ?: 'https://test.popolive.net');
     }
 }
