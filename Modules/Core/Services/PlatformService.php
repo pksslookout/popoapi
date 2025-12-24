@@ -12,7 +12,7 @@ class PlatformService
 {
 	public function getAppInfo()
 	{
-		$baseUrl = 'https://api-platform.hquesoft.com';
+		$baseUrl = 'https://apitest.popolive.com';
 
 		$apiHelper = new HttpClient($baseUrl);
 

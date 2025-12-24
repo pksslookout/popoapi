@@ -174,12 +174,12 @@ class Client extends BaseClient
         return false;
     }
 
-    // 确认订单核销 
+    // 确认订单核销
     public function confirmUsedOrder($order)
     {
         $user = $order->user;
 
-        $thumb = 'https://bus-cdn.hquesoft.com/box/img/other/h19vTx5mpv6JcA2n3wxDwcnQ3GljpkQx82VIaTQY.png?x-oss-process=image/resize,w_400';
+        $thumb = 'https://apitest.popolive.com/box/img/other/h19vTx5mpv6JcA2n3wxDwcnQ3GljpkQx82VIaTQY.png?x-oss-process=image/resize,w_400';
 
         $params = [
             'out_order_no' => $order->pay_number,

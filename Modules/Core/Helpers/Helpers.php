@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function increaseMapItem(&$map, $key, $value)
 {
@@ -73,7 +73,7 @@ function splitInteger($number, $parts) {
         // if ($randomValue <= 0) {
         //     $randomValue = 1;
         // }
-        
+
         $result[] = 1;
         // $total += $randomValue;
     }
@@ -88,7 +88,7 @@ function splitInteger($number, $parts) {
         // }
 
 
-        
+
         $result[rand(0, $parts-1)] += 1;
         // $total += $randomValue;
     }
@@ -105,7 +105,7 @@ function splitInteger($number, $parts) {
     //     if ($randomValue <= 0) {
     //         $randomValue = 1;
     //     }
-        
+
     //     $result[] = $randomValue;
     //     $total += $randomValue;
     // }
@@ -122,7 +122,7 @@ function minimumFieldValue($array, $field)
     $minimum = $array[0][$field];
 
     foreach ($array as $item) {
-        $minimum = $minimum > $item[$field] ? $item[$field] : $minimum; 
+        $minimum = $minimum > $item[$field] ? $item[$field] : $minimum;
     }
 
     return $minimum;
@@ -165,7 +165,7 @@ function subtractOrZero($left, $right)
     return $diff <= 0 ? 0 : $diff;
 }
 
-function v() 
+function v()
 {
 	$args = func_get_args();
 	foreach ($args as $key => $arg) {
@@ -220,7 +220,7 @@ function pickLuckySku($collection, $weightKey, $total)
 
     $res = [];
 
-    for ($i=0; $i < $total; $i++) { 
+    for ($i=0; $i < $total; $i++) {
         $weightSum = $newCollection->sum($weightKey) * 100;
         $randNumber = rand(0, $weightSum);
 
@@ -229,7 +229,7 @@ function pickLuckySku($collection, $weightKey, $total)
             $odds = is_array($item) ? $item[$weightKey] : $item->$weightKey;
             $sum += ($odds ?: 0) * 100;
             if ($sum >= $randNumber) {
-                // 此item中奖 
+                // 此item中奖
                 // 提出集合
                 $newCollection->splice($key, 1);
                 array_push($res, $item);
@@ -263,17 +263,17 @@ function pickLuckySkuMaps($skus, $weightKey, $total)
 
     // 抽多个
     $luckyTotal = 0;
-    while ($luckyTotal < $total && $skus->sum('_cached_stock') > 0) { 
+    while ($luckyTotal < $total && $skus->sum('_cached_stock') > 0) {
 
         // 从0到权重总和之间随机抽出一个数字
         $random = rand(1, $skus->where('_cached_stock', '>', 0)->sum($weightKey) * 100);
 
         // 已累加的随机数
-        $randSum = 0; 
+        $randSum = 0;
         foreach ($skus as $key => $sku) {
 
             // 算出已累计的随机数
-            $randSum += ($sku->$weightKey ?: 0) * 100;  
+            $randSum += ($sku->$weightKey ?: 0) * 100;
 
             // 这个物品在随机数的范围内且有库存
             if (($randSum >= $random) && ($sku->_cached_stock > 0)) {
@@ -356,7 +356,7 @@ function firstChar($s0) {
 
 // 按IP检索该ip所在城市等位置
 function getIpLocation($ip) {
-    $jsonStr = file_get_contents('https://api-app.hquesoft.com/ip-location?ip=' . $ip . '&domain=' . $_SERVER["HTTP_HOST"]);
+    $jsonStr = file_get_contents('https://apitest.popolive.com/ip-location?ip=' . $ip . '&domain=' . $_SERVER["HTTP_HOST"]);
     return @json_decode($jsonStr, true)['data'] ?: [
         'city' => NULL,
         'province' => NULL,
@@ -422,7 +422,7 @@ function arrayFilter($array, $only) {
                 }
             } elseif (isset($array[$key])) {
                 $result[$key] = arrayFilter($array[$key], $levelTwoOnly);
-            } 
+            }
         }
     }
 

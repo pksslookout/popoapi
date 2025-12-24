@@ -107,6 +107,9 @@ class AdminController extends Controller
 
     public function destroy(Request $req, $id)
     {
+        if($id==1){
+            ThrowException::Conflict('当前超级管理员无法被删除');
+        }
         $rule = [
         ];
         Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();

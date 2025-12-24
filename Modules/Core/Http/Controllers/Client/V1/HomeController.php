@@ -8,8 +8,8 @@ use Illuminate\Routing\Controller;
 class HomeController extends Controller
 {
     // 跳转至公司主页，可自行修改
-    public function home(Request $req) 
+    public function home(Request $req)
     {
-    	return redirect(env('HOME_REDIRECT') ?: 'https://hquesoft.com');
+    	return redirect(env('HOME_REDIRECT') ?: 'https://test.popolive.com');
     }
 }

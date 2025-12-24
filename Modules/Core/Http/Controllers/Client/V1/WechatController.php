@@ -14,12 +14,12 @@ use Wechat;
 
 class WechatController extends Controller
 {
-    // 
+    //
     public function miniappSubscribeIdIndex(Request $req)
     {
         $rule = [
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         // 模板id
         $cacheKey = 'miniapp_subscribe_template_ids_1';
@@ -36,8 +36,8 @@ class WechatController extends Controller
             if (!$templateId) {
                 $info = config('subscribeMessage.miniapp.' . $type);
 
-                $tid = $info['id']; 
-                $kidList = $info['words'];      
+                $tid = $info['id'];
+                $kidList = $info['words'];
                 $sceneDesc = $info['desc'];
                 $info = Miniapp::get('default')->subscribe_message->addTemplate($tid, $kidList, $sceneDesc);
                 $templateId = @$info['priTmplId'];
@@ -69,7 +69,7 @@ class WechatController extends Controller
         $rule = [
             'path' => ['required']
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $path = $req->path;
 
@@ -95,7 +95,7 @@ class WechatController extends Controller
         $rule = [
             'url' => ['required']
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $url = $req->url;
 
@@ -106,7 +106,6 @@ class WechatController extends Controller
             'scanQRCode'
         ];
 
-        // $url = 'https://kmhd.hquesoft.com';
         $config = [];
         if (env('WECHAT_OFFICIAL_ACCOUNT_APPID')) {
             $config = Wechat::get()->jssdkConfig($url, $apis);
@@ -124,7 +123,7 @@ class WechatController extends Controller
             'path' => ['required'],
             // "query" => ['required']
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $path = $req->path;
 
@@ -144,7 +143,7 @@ class WechatController extends Controller
         $data = json_decode($data);
 
         $url = $data->url_link;
-        
+
         return [
             'url' => $url
         ];
