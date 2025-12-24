@@ -5,8 +5,6 @@ namespace Modules\Core\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 // use Illuminate\Database\Eloquent\Relations;
-use Modules\User\Entities\User;
-use Modules\Order\Entities\BaseOrder;
 use DB;
 use Auth;
 
@@ -281,7 +279,7 @@ class BaseEntity extends Model
 
         $entity = $entity->first();
 
-    	$entity || ($throwException && ThrowException::NotFound($class::$resourceName.'不存在'));
+    	$entity || ($throwException && ThrowException::Conflict($class::$resourceName.'不存在'));
 
     	return $entity;
     }
@@ -296,7 +294,7 @@ class BaseEntity extends Model
         if (@$options['ip_id']) {
             $options['where']['ip_id'] = intVal($options['ip_id']);
             $options['or_where'] = [
-                ['category_ids', 'REGEXP', '(^|,| |[)'.$options['ip_id'].'(,| |]|$)']  
+                ['category_ids', 'REGEXP', '(^|,| |[)'.$options['ip_id'].'(,| |]|$)']
             ];
         }
 
