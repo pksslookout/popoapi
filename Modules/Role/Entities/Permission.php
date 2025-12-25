@@ -7,6 +7,7 @@ class Permission extends Model
 {
 	protected $guarded = [];
     static public $resourcename = '权限';
+    protected $table = 'permissions';
 
     public function roles()
     {

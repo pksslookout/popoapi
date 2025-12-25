@@ -7,6 +7,8 @@ $moduleName = 'Role';
 $api->version('v1', ['prefix' => 'admin-api', 'namespace' => 'Modules\\'.$moduleName.'\Http\Controllers\Admin\V1'], function ($api) {
 	$allMethod = ['index', 'show', 'store', 'update', 'destroy'] ;
 
+
+    $api->resource('admin-permissions', "AdminPermissionsController", ['only' => $allMethod]);
 	$api->resource('admin-roles', "AdminRoleController", ['only' => $allMethod]);
 });
 

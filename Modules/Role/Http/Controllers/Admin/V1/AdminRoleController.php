@@ -16,7 +16,7 @@ class AdminRoleController extends Controller
     {
         $rule = [
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $list = Role::getList([
             'scopes' => [
@@ -44,7 +44,7 @@ class AdminRoleController extends Controller
         $rule = [
             'perms' => ['array']
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $info = $req->all();
 
@@ -64,15 +64,15 @@ class AdminRoleController extends Controller
         ];
     }
 
-    public function update(Request $req, $uuid)
+    public function update(Request $req, $id)
     {
         $rule = [
             'perms' => ['array']
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $item = Role::getEntity([
-            'uuid' => $uuid
+            'id' => $id
         ]);
 
         if ($req->type === 'update') {
@@ -86,14 +86,14 @@ class AdminRoleController extends Controller
     }
 
 
-    public function destroy(Request $req, $uuid)
+    public function destroy(Request $req, $id)
     {
         $rule = [
         ];
-        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest(); 
+        Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
         $item = Role::getEntity([
-            'uuid' => $uuid
+            'id' => $id
         ]);
 
         $item->delete();
