@@ -7,6 +7,13 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Modules\Admin\Entities\Admin;
 
+use TencentCloud\Common\Credential;
+use TencentCloud\Common\Profile\ClientProfile;
+use TencentCloud\Common\Profile\HttpProfile;
+use TencentCloud\Common\Exception\TencentCloudSDKException;
+use TencentCloud\Captcha\V20190722\CaptchaClient;
+use TencentCloud\Captcha\V20190722\Models\DescribeCaptchaResultRequest;
+
 use Validator;
 use ThrowException;
 use Auth;
@@ -21,17 +28,48 @@ class LoginController extends Controller
         $rule = [
             'phone' => ['required'],
             'password' => ['required'],
+            'randstr' => ['required'],
+            'ticket' => ['required'],
         ];
+
         Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
+
+        $ip = $req->getClientIp();
+        $params = [
+            'CaptchaAppId' => (int)env("CAPTCHA_APP_ID"),
+            'CaptchaType' => 9,
+            'NeedGetCaptchaTime' => 1,
+            'Randstr' => $req->randstr,
+            'UserIp' => $ip,
+            'Ticket' => $req->ticket,
+            'AppSecretKey' => env("APP_SECRET_KEY"),
+        ];
+        try {
+            $cred = new Credential(env("TENCENTCLOUD_SECRET_ID"), env("TENCENTCLOUD_SECRET_KEY"));
+            $httpProfile = new HttpProfile();
+            $httpProfile->setEndpoint("captcha.tencentcloudapi.com");
+            $clientProfile = new ClientProfile();
+            $clientProfile->setHttpProfile($httpProfile);
+            $client = new CaptchaClient($cred, "", $clientProfile);
+            $reqC = new DescribeCaptchaResultRequest();
+            $reqC->fromJsonString(json_encode($params));
+            $resp = $client->DescribeCaptchaResult($reqC);
+            if($resp->CaptchaCode!=0){
+                ThrowException::Conflict('异常错误');
+            }
+            // 输出json格式的字符串回包
+//            print_r($resp->toJsonString());
+        }
+        catch(TencentCloudSDKException $e) {
+            ThrowException::Conflict($e);
+        }
 
         $data['phone'] = $req->phone;
         $data['password'] = $req->password;
 
-        // 校验验证码是否正确
-
-        $admin = Admin::getEntity([
-            'phone' => $data['phone']
-        ]);
+        $admin = Admin::isExisting([
+            'phone' => $data['phone'],
+        ]) ?: ThrowException::Conflict('手机号不正确');
 
         if(!$admin){
             ThrowException::Conflict('账号错误');
@@ -46,7 +84,7 @@ class LoginController extends Controller
         }
 
         $token = Auth::generateToken($admin, [
-            'ip' => $req->getClientIp()
+            'ip' => $ip
             // 'platform' => 'pc_web'
         ]);
 

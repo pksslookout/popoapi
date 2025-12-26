@@ -54,7 +54,15 @@ class AdminController extends Controller
         ];
         Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
-        $info = $req->all();
+        $admin = Admin::isExisting([
+            'phone' => $req->phone,
+        ]);
+
+        if($admin){
+            ThrowException::Conflict('手机号已被使用');
+        }
+
+//        $info = $req->all();
 
         $info = [
             'name' => $req->name,

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8338616aca6c49f0367097a601a5fc53",
+    "content-hash": "f637825872528101f4f6cb6ff04c34b9",
     "packages": [
         {
             "name": "96qbhy/tt-microapp",
@@ -11625,6 +11625,154 @@
             "time": "2021-12-16T21:58:21+00:00"
         },
         {
+            "name": "tencentcloud/captcha",
+            "version": "3.0.1330",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tencentcloud-sdk-php/captcha.git",
+                "reference": "4549bd75a1b6ce70c3bed24002c155537461664a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tencentcloud-sdk-php/captcha/zipball/4549bd75a1b6ce70c3bed24002c155537461664a",
+                "reference": "4549bd75a1b6ce70c3bed24002c155537461664a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "tencentcloud/common": "3.0.1330"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TencentCloud\\": "./src/TencentCloud"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "tencentcloudapi",
+                    "email": "tencentcloudapi@tencent.com",
+                    "homepage": "https://github.com/tencentcloud-sdk-php/captcha",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TencentCloudApi php sdk captcha",
+            "homepage": "https://github.com/tencentcloud-sdk-php/captcha",
+            "support": {
+                "issues": "https://github.com/tencentcloud-sdk-php/captcha/issues",
+                "source": "https://github.com/tencentcloud-sdk-php/captcha/tree/3.0.1330"
+            },
+            "time": "2025-03-03T20:20:26+00:00"
+        },
+        {
+            "name": "tencentcloud/common",
+            "version": "3.0.1330",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tencentcloud-sdk-php/common.git",
+                "reference": "0a6e44db5504ef18584edfdef7ff44b9085b43ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tencentcloud-sdk-php/common/zipball/0a6e44db5504ef18584edfdef7ff44b9085b43ed",
+                "reference": "0a6e44db5504ef18584edfdef7ff44b9085b43ed",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3||^7.0",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TencentCloud\\": "./src/TencentCloud"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "tencentcloudapi",
+                    "email": "tencentcloudapi@tencent.com",
+                    "homepage": "https://cloud.tencent.com/document/sdk/PHP",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TencentCloudApi php sdk",
+            "homepage": "https://github.com/tencentcloud-sdk-php/common",
+            "support": {
+                "issues": "https://github.com/tencentcloud-sdk-php/common/issues",
+                "source": "https://github.com/tencentcloud-sdk-php/common/tree/3.0.1330"
+            },
+            "time": "2025-03-03T20:31:03+00:00"
+        },
+        {
+            "name": "tencentcloud/cvm",
+            "version": "3.0.1330",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tencentcloud-sdk-php/cvm.git",
+                "reference": "4219e34febb5e53df72c0e96994130f926f1b6a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tencentcloud-sdk-php/cvm/zipball/4219e34febb5e53df72c0e96994130f926f1b6a1",
+                "reference": "4219e34febb5e53df72c0e96994130f926f1b6a1",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "tencentcloud/common": "3.0.1330"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TencentCloud\\": "./src/TencentCloud"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "tencentcloudapi",
+                    "email": "tencentcloudapi@tencent.com",
+                    "homepage": "https://github.com/tencentcloud-sdk-php/cvm",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TencentCloudApi php sdk cvm",
+            "homepage": "https://github.com/tencentcloud-sdk-php/cvm",
+            "support": {
+                "issues": "https://github.com/tencentcloud-sdk-php/cvm/issues",
+                "source": "https://github.com/tencentcloud-sdk-php/cvm/tree/3.0.1330"
+            },
+            "time": "2025-03-03T20:33:02+00:00"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "source": {
@@ -12595,5 +12743,5 @@
         "php": ">=7.1.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }

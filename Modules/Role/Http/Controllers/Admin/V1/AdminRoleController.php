@@ -18,24 +18,24 @@ class AdminRoleController extends Controller
         ];
         Validator::make($req->all(), $rule)->fails() && ThrowException::BadRequest();
 
-        $list = Role::getList([
-            'scopes' => [
-                'type' => 'admin'
-            ],
-            'with_count' => [
-                'members'
-            ],
-            'only' => [
-                'id',
-                'uuid',
-                'name',
-                'members_count',
-                'description',
-                'code',
-                'perm_codes'
-            ]
-        ]);
+        $options = $req->all();
+        $options['scopes'] = [
+            'type' => 'admin'
+        ];
+        $options['with_count'] = [
+            'members'
+        ];
+        $options['only'] = [
+            'id',
+            'uuid',
+            'name',
+            'members_count',
+            'description',
+            'code',
+            'perm_codes'
+        ];
 
+        $list = Role::getList($options);
         return $list->generateListResponse();
     }
 
